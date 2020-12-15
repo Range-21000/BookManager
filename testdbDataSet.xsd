@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="testdbDataSet" targetNamespace="http://tempuri.org/testdbDataSet.xsd" xmlns:mstns="http://tempuri.org/testdbDataSet.xsd" xmlns="http://tempuri.org/testdbDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="testdbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="testdbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BookManageProgram.Properties.Settings.GlobalReference.Default.testdbConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="bookTableAdapter" GeneratorDataComponentClassName="bookTableAdapter" Name="book" UserDataComponentName="bookTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="testdbConnectionString (Settings)" DbObjectName="testdb.book" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `ISBN`, `Title`, `Writer`, `Price`, `BookReply`, `BookLocation`, `EnterWith`, `BookCondition`, `Publisher` FROM `book`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="memberTableAdapter" GeneratorDataComponentClassName="memberTableAdapter" Name="member" UserDataComponentName="memberTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="testdbConnectionString (Settings)" DbObjectName="testdb.member" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `MemberGrade`, `MemberNum`, `MemberAdd`, `MemberEmail`, `MemberCondition`, `MemberBorrow`, `MemberReserv`, `BorrowStop`, `Memo` FROM `member`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="testdbDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="testdbDataSet" msprop:Generator_UserDSName="testdbDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="book" msprop:Generator_TableClassName="bookDataTable" msprop:Generator_TableVarName="tablebook" msprop:Generator_TablePropName="book" msprop:Generator_RowDeletingName="bookRowDeleting" msprop:Generator_RowChangingName="bookRowChanging" msprop:Generator_RowEvHandlerName="bookRowChangeEventHandler" msprop:Generator_RowDeletedName="bookRowDeleted" msprop:Generator_UserTableName="book" msprop:Generator_RowChangedName="bookRowChanged" msprop:Generator_RowEvArgName="bookRowChangeEvent" msprop:Generator_RowClassName="bookRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="member" msprop:Generator_TableClassName="memberDataTable" msprop:Generator_TableVarName="tablemember" msprop:Generator_TablePropName="member" msprop:Generator_RowDeletingName="memberRowDeleting" msprop:Generator_RowChangingName="memberRowChanging" msprop:Generator_RowEvHandlerName="memberRowChangeEventHandler" msprop:Generator_RowDeletedName="memberRowDeleted" msprop:Generator_UserTableName="member" msprop:Generator_RowChangedName="memberRowChanged" msprop:Generator_RowEvArgName="memberRowChangeEvent" msprop:Generator_RowClassName="memberRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
