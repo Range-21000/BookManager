@@ -78,6 +78,7 @@
             this.txtGrade = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -464,7 +465,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.대출반납ToolStripMenuItem,
@@ -494,7 +494,7 @@
             // 회원관리ToolStripMenuItem
             // 
             this.회원관리ToolStripMenuItem.Name = "회원관리ToolStripMenuItem";
-            this.회원관리ToolStripMenuItem.Size = new System.Drawing.Size(162, 48);
+            this.회원관리ToolStripMenuItem.Size = new System.Drawing.Size(162, 45);
             this.회원관리ToolStripMenuItem.Text = "회원관리";
             this.회원관리ToolStripMenuItem.Click += new System.EventHandler(this.회원관리ToolStripMenuItem_Click);
             // 
@@ -541,12 +541,24 @@
             this.label8.TabIndex = 96;
             this.label8.Text = "회원등급";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(947, 65);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(177, 60);
+            this.btnRefresh.TabIndex = 119;
+            this.btnRefresh.Text = "새로고침";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // BorrowBookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(2916, 1452);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.txtCondition);
             this.Controls.Add(this.txtGrade);
             this.Controls.Add(this.label9);
@@ -658,5 +670,6 @@
         private System.Windows.Forms.TextBox txtGrade;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

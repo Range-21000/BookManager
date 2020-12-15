@@ -117,8 +117,8 @@ namespace BookManageProgram
                 Application.OpenForms["MemberManageForm"].Close();
             }
 
-            txtBorrow.Text = "0/3";
-            txtReserv.Text = "0/3";
+            txtBorrow.Text = "0";
+            txtReserv.Text = "0";
         }
 
 
@@ -130,6 +130,37 @@ namespace BookManageProgram
 
         private void button6_Click(object sender, EventArgs e)
         {
+            string delNum = txtNum.Text;
+            if (MessageBox.Show("해당 번호의 회원이 삭제 됩니다.계속하시겠습니까?", "삭제 확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    conn = new MySqlConnection(connStr);
+                    conn.Open();
+                    string cmdStr = "DELETE FROM member WHERE MemberNum = '" + delNum + "'";
+                    cmd = new MySqlCommand(cmdStr, conn);
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+
+                    conn.Close();
+                    MessageBox.Show("연결실패" + ex.Message);
+                    Application.OpenForms["MemberManageForm"].Close();
+                }
+                finally
+                {
+                    dataGridView1.Refresh();
+                    dataGridView1.Update();
+                }
+            }
+            else
+            {
+                MessageBox.Show("취소했습니다.", "취소");
+            }
 
         }
 
@@ -204,6 +235,11 @@ namespace BookManageProgram
                 new ReturnBookForm().ShowDialog();
             }
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNum.Text = dataGridView1.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
         }
     }
 }

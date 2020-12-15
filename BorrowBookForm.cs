@@ -13,10 +13,13 @@ namespace BookManageProgram
 {
     public partial class BorrowBookForm : Form
     {
-
+        int i = 1;
         string connStr = "Server=localhost;Database=testdb;UID=DD;PWD=1q2w3e4r!;CharSet=utf8";
         MySqlConnection conn;
         MySqlCommand cmd;
+        MySqlCommand cmd1;
+        MySqlCommand cmBD;
+        MySqlCommand cmRD;
 
         public BorrowBookForm()
         {
@@ -135,11 +138,20 @@ namespace BookManageProgram
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+           
             string register = textBox7.Text;
             string isbn = textBox17.Text;
-            if (txtCondition.Text != "대출 불가능" && textBox13.Text != "대출 불가능")
+            string mNum = txtNum.Text;
+            string mborrow = textBox4.Text; //int.Parse(textBox4.Text);
+            string BD = textBox11.Text;
+            string RD = textBox9.Text;
+            if (mborrow == "0") {i = 1; }
+            if(mborrow == "1") { i = 2; }
+            if(mborrow == "2") { i = 3; }
+            if(mborrow == "3") { MessageBox.Show("3개를 초과하여 빌릴수 없습니다."); }
+            if (txtCondition.Text != "대출 불가능" && textBox13.Text != "대출 불가능" && textBox4.Text != "3")
             {
-                if ((register != null && register != "") && (isbn != null && isbn != "") && (txtNum.Text != null && txtNum.Text != "") && (txtName.Text != null && txtName.Text != ""))
+                if ((register != null && register != "") && (isbn != null && isbn != "") && (txtNum.Text != null && txtNum.Text != "") && (txtName.Text != null && txtName.Text != "")) 
                 {
                     if (MessageBox.Show("대출 하시겠습니까?", "대출", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
@@ -147,9 +159,21 @@ namespace BookManageProgram
                         {
                             conn = new MySqlConnection(connStr);
                             conn.Open();
+                            
                             string cmdStr = "UPDATE book SET BookCondition = '대출 불가능' WHERE BookRegister = '" + register + "' AND ISBN = '" + isbn + "'";
+
+                            string cmdTrans = "UPDATE member SET MemberBorrow = '" + i + "'" + "WHERE MemberNum = '" + mNum + "'";
+
+                            string cmdBD = "UPDATE borrow SET BorrowDate = '" + BD + "' ," + "ReturnDate = '" + RD + "'"; 
+                          
+                            
+
                             cmd = new MySqlCommand(cmdStr, conn);
+                            cmd1 = new MySqlCommand(cmdTrans, conn);
+                            cmBD = new MySqlCommand(cmdBD, conn);
+
                             cmd.ExecuteNonQuery();
+                            cmd1.ExecuteNonQuery();
                             conn.Close();
 
 
@@ -180,6 +204,45 @@ namespace BookManageProgram
                 }
             }
             else { MessageBox.Show("대출 불가능한 상태입니다."); }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            conn = new MySqlConnection(connStr);
+            try
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT * FROM member", conn);
+                MySqlDataAdapter adapter1 = new MySqlDataAdapter("SELECT * FROM book", conn);
+                DataTable dt1 = new DataTable();
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                adapter1.Fill(dt1);
+                dataGridView1.DataSource = dt;
+                dataGridView2.DataSource = dt1;
+                /*
+                for(int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataRow dr = dt.Rows[i];
+                    ListViewItem listitem = new ListViewItem(dr["ISBN"].ToString());
+                    listitem.SubItems.Add(dr["Title"].ToString());
+                    listitem.SubItems.Add(dr["Writer"].ToString());
+                    listitem.SubItems.Add(dr["Price"].ToString());
+                    listitem.SubItems.Add(dr["BookReply"].ToString());
+                    listitem.SubItems.Add(dr["BookLocation"].ToString());
+                    listitem.SubItems.Add(dr["EnterWith"].ToString());
+                    listitem.SubItems.Add(dr["BookCondition"].ToString());
+                    listitem.SubItems.Add(dr["Publisher"].ToString());
+
+                }*/
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+                conn.Close();
+                MessageBox.Show("연결실패" + ex.Message);
+                Application.OpenForms["MemberManageForm"].Close();
+            }
         }
     }
 }
